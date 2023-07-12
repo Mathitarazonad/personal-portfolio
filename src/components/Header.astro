@@ -1,0 +1,75 @@
+---
+import NavIcon, { Icon } from './NavIcon.astro';
+import ThemeButton from './ThemeButton.astro'
+const navigation = [
+  {
+    name: 'Home',
+    url: '#welcome',
+  },
+  {
+    name: 'Services',
+    url: '#services',
+  },
+  {
+    name: 'theme'
+  },
+  {
+    name: 'Projects',
+    url: '#projects',
+  },
+  {
+    name: 'Contact',
+    url: '#contact',
+  },
+]
+---
+
+<header>
+  <nav>
+    <ul>
+      {navigation.map(link => 
+        link.name !== 'theme' ? 
+          <li>
+            <NavIcon icon={link.name as Icon} />
+            <a>{link.name}</a>
+          </li> 
+          : <ThemeButton />
+      )}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    background-color: var(--light-purple);
+    left: 0;
+    width: 100%;
+    position: fixed;
+  }
+
+  nav {
+    height: 100%;
+  }
+
+  ul {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding: var(--mobile-padding);
+  }
+
+  li {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  a {
+    font-size: 14px;
+    color: var(--nav-link-text);
+    text-decoration: none;
+  }
+</style>
