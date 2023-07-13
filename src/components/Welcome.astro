@@ -1,0 +1,111 @@
+---
+import Technologies from './Technologies.astro';
+
+---
+
+<section>
+  <div class='photo-section'>
+    <img src='/personal-photo.webp' alt="Mathi's Image" />
+  </div>
+  <div class='text-section'>
+    <h3>Welcome! I'm</h3>
+    <h1>Mathias Tarazona</h1>
+    <h2>Web Developer</h2>
+    <Technologies />
+    <p>Technology passionate with more than <strong>1 year of experience</strong> developing web applications, specifically in the <strong>frontend</strong> with <strong>React and TypeScript.</strong> Currently developing personal projects and from third parties.</p>
+    <div class='btns-container'>
+      <button class='download-btn'>
+        <a href='/MathiasTarazona-CV.pdf' download>Download CV</a>
+      </button>
+      <button class='contact-btn'>
+        Contact Me
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    margin-top: 80px;
+    padding: var(--mobile-padding);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .photo-section {
+    display: flex;
+    justify-content: center;
+  }
+
+  img {
+    border: 10px solid var(--dark-purple);
+    border-radius: 50%;
+    opacity: .2;
+  }
+
+  .text-section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  h3 {
+    color: var(--dark-purple);
+    font-size: 1.8rem;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+    color: var(--light-purple);
+  }
+
+  h2 {
+    font-size: 2rem;
+    color: var(--dark-purple);
+  }
+
+  p {
+    font-size: 17px;
+    color: var(--dark-purple);
+    font-weight: 600;
+    line-height: 36px;
+    letter-spacing: .3px;
+  }
+
+  strong {
+    color: var(--light-purple);
+    font-weight: 700;
+  }
+
+  .btns-container {
+    display: flex;
+    gap: 15px;
+  }
+
+  button, .download-btn {
+    border: none;
+    background: none;
+    width: 170px;
+    height: 55px;
+    border-radius: 15px;
+    font-size: 19px;
+    font-weight: 500;
+    padding: 0 10;
+  }
+
+  .download-btn {
+    border-radius: 15px;
+    background-color: var(--light-purple);
+  }
+
+  .download-btn a {
+    color: var(--light-white);
+    text-decoration: none;
+  }
+
+  .contact-btn {
+    border: 4px solid var(--dark-purple);
+    color: var(--dark-purple);
+    font-weight: 700;
+  }
+</style>
