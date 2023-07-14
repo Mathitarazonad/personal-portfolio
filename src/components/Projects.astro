@@ -1,0 +1,92 @@
+---
+const projects = [
+  {
+    projectDetailsURL: '/employer-infojobs',
+    name: 'Employer InfoJobs',
+    resume: 'Application based on InfoJobs but for recruiters.',
+    technologies: ['Next', 'TypeScript', 'Next', 'Firebase'],
+    mobileImage: 'recruiter-infojobs-mobile.webp',
+    desktopImage: 'recruiter-infojobs-desktop.webp',
+    repositoryURL: 'https://github.com/Mathitarazonad/Infojobs-hackaton',
+    liveURL: 'https://infojobs-hackaton-app-mt.vercel.app/'
+  },
+  {
+    projectDetailsURL: '/weather-app',
+    name: 'Weather App',
+    resume: 'Live weather application made with React and Express',
+    technologies: ['React', 'Express', 'Sass', 'Redux QTK'],
+    mobileImage: 'weather-app-mobile.webp',
+    desktopImage: 'weather-app-desktop.webp',
+    repositoryURL: 'https://github.com/Mathitarazonad/weather-app',
+    liveURL: 'https://weather-appmt.vercel.app/'
+  },
+  {
+    projectDetailsURL: '/word-quiz',
+    name: 'Word Quiz',
+    resume: 'Game application based on Wordle game made with Next',
+    technologies: ['Next', 'Tailwind', 'Firebase'],
+    mobileImage: 'word-quiz-mobile.webp',
+    desktopImage: 'word-quiz-desktop.webp',
+    repositoryURL: 'https://github.com/Mathitarazonad/next-quiz-app',
+    liveURL: 'https://next-quiz-app-mathitarazonad.vercel.app/'
+  },
+  {
+    projectDetailsURL: '/age-calculator',
+    name: 'Age Calculator',
+    resume: 'Application that calculates any age made with Svelte',
+    technologies: ['Svelte', 'TypeScript', 'Tailwind'],
+    mobileImage: 'age-calculator-mobile.webp',
+    desktopImage: 'age-calculator-desktop.webp',
+    repositoryURL: 'https://github.com/Mathitarazonad/svelte-age-calculator',
+    liveURL: 'https://svelte-age-calculator.vercel.app/'
+  },
+]
+---
+<section id='projects'>
+  <h2>Some Projects</h2>
+<!--   <div class='desktop-projects'>
+  </div> -->
+  <div class='mobile-projects'>
+    {projects.map(project => 
+    <a href={project.projectDetailsURL}>
+      <img src={project.mobileImage} alt={project.name + 'image'} />
+    </a>)}
+  </div>
+</section>
+
+<style>
+  section {
+    background-color: var(--light-white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: var(--mobile-padding);
+  }
+
+  h2 {
+    color: var(--light-purple);
+    font-size: 1.75rem;
+  }
+
+  .mobile-projects {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, minmax(250px, 325px));
+  }
+
+  a {
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .desktop-projects {
+    display: none;
+  }
+
+</style>
