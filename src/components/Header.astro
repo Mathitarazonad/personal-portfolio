@@ -26,16 +26,16 @@ const navigation = [
 
 <header>
   <nav>
-    <ul>
+    <div class='links'>
       {navigation.map(link => 
         link.name !== 'theme' ? 
-          <li>
+          <a class='link' href={link.url}>
             <NavIcon icon={link.name as Icon} />
-            <a href={link.url}>{link.name}</a>
-          </li> 
+            <p>{link.name}</p>
+          </a> 
           : <ThemeButton />
       )}
-    </ul>
+    </div>
   </nav>
 </header>
 
@@ -53,7 +53,7 @@ const navigation = [
     height: 100%;
   }
 
-  ul {
+  .links {
     height: 100%;
     display: flex;
     align-items: center;
@@ -62,7 +62,7 @@ const navigation = [
     padding: var(--mobile-padding);
   }
 
-  li {
+  .link {
     flex: 1 1 0;
     display: flex;
     align-items: center;
