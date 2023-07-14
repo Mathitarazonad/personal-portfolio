@@ -88,7 +88,7 @@
 
 <style>
   section {
-    background-color: var(--white);
+    background-color: var(--fourth-color);
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -96,7 +96,7 @@
   }
 
   h2 {
-    color: var(--light-purple);
+    color: var(--secondary-color);
     font-size: 1.75rem;
   }
 
@@ -112,9 +112,13 @@
     display: flex;
     gap: 10px;
     align-items: center;
-    background-color: var(--light-white);
+    background-color: var(--third-color);
     border-radius: 15px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+
+  body.dark-theme .service {
+    box-shadow: none;
   }
 
   .service-logo {
@@ -127,16 +131,16 @@
   }
 
   h3 {
-    color: var(--dark-purple);
+    color: var(--main-color);
   }
 
   p {
-    color: var(--dark-card-text);
+    color: var(--card-text);
     font-weight: 600;
   }
 
   svg {
-    color: var(--dark-purple);
+    color: var(--main-color);
     width: 55px;
   }
 </style>

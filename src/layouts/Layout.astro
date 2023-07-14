@@ -24,14 +24,21 @@ const { title } = Astro.props;
 	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 	:root {
 		--mobile-padding: 15px;
-    --dark-purple: #140035;
-    --light-purple: #683CE2;
-    --light-white: #F9F9F9;
-    --white: #fff;
+    --main-color: #140035;
+    --secondary-color: #683CE2;
+    --third-color: #F9F9F9;
+    --fourth-color: #fff;
     --nav-link-text: #BDBDBDD6;
-    --dark-card-bg: #2B154D;
-    --dark-card-text: rgba(20, 0, 53, 0.77);
-    --light-card-text: #E3E1E4;
+    --card-bg: #F9F9F9;
+    --card-text: rgba(20, 0, 53, 0.77);
+	}
+
+	body.dark-theme {
+		--main-color: #f9f9f9;
+		--third-color: #140035;
+		--fourth-color: #200a40;
+		--card-bg: #200a40;
+		--card-text: #E3E1E4;
 	}
   * {
     margin: 0;
