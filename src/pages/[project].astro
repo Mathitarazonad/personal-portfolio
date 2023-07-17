@@ -1,0 +1,238 @@
+---
+import Header from '../components/Header.astro';
+import Layout from '../layouts/Layout.astro';
+export function getStaticPaths() {
+  return [
+    {params: {project: 'employer-infojobs'}},
+    {params: {project: 'weather-app'}},
+    {params: {project: 'word-quiz'}},
+    {params: {project: 'age-calculator'}},
+  ]
+}
+
+interface Project {
+  id: string
+  name: string
+  description: string
+  technologies: string[]
+  mobileImage: string
+  desktopImage: string
+  repositoryURL: string
+  liveURL: string
+}
+
+const projects: Project[] = [
+  {
+    id: 'employer-infojobs',
+    name: 'Employer InfoJobs',
+    description: "This is an application for InfoJob's Hackathon made in June 2023. The application is based on the InfoJob's web application but pretended for recruiter or employers who are searching for employees for their companies or business. Although the application is designed for employers, people can also create their profiles to be hired for employers.",
+    technologies: ['Next', 'TypeScript', 'Next', 'Firebase'],
+    mobileImage: 'recruiter-infojobs-mobile.webp',
+    desktopImage: 'recruiter-infojobs-desktop.webp',
+    repositoryURL: 'https://github.com/Mathitarazonad/Infojobs-hackaton',
+    liveURL: 'https://infojobs-hackaton-app-mt.vercel.app/'
+  },
+  {
+    id: 'weather-app',
+    name: 'Weather App',
+    description: 'This is a weather application that allows users to check real-time weather information for any location.The application fetches data from OpenWeatherMap API such as temperature, humidity, wind speed, and so on. Users can search for weather details by entering the name of any city or just with its current position using native Geolocation API.',
+    technologies: ['React', 'Express', 'Sass', 'Redux QTK'],
+    mobileImage: 'weather-app-mobile.webp',
+    desktopImage: 'weather-app-desktop.webp',
+    repositoryURL: 'https://github.com/Mathitarazonad/weather-app',
+    liveURL: 'https://weather-appmt.vercel.app/'
+  },
+  {
+    id: 'word-quiz',
+    name: 'Word Quiz',
+    description: "This application is game that is based on Wordle's game, and it has 10 levels, each with easy, normal and hard difficulties. Users needs to guess all the words in the 3 different difficulties in each level, in order to unlock the next one, and each level consists on a specific topic to give the user a context of which type of words they are guessing. Also in each level users have some abilities to use if they want that must be purchased with coins that are obtained by guessing word, completing difficulties and unlocking new levels.",
+    technologies: ['Next', 'Tailwind', 'Firebase'],
+    mobileImage: 'word-quiz-mobile.webp',
+    desktopImage: 'word-quiz-desktop.webp',
+    repositoryURL: 'https://github.com/Mathitarazonad/next-quiz-app',
+    liveURL: 'https://next-quiz-app-mathitarazonad.vercel.app/'
+  },
+  {
+    id: 'age-calculator',
+    name: 'Age Calculator',
+    description: 'The application consists of a simple age calculator that allows you to calculate the dates that have passed from a date to the current. Also users are not limited just to calculate how many years, months or days have passed, but see the time that has passed with more specific information like, seconds, days, hours, weeks, and so on. The calculator have some special validations to make sure that users not enter invalid entries like, invalid dates (march 32), future dates, zero dates, etc.',
+    technologies: ['Svelte', 'TypeScript', 'Tailwind'],
+    mobileImage: 'age-calculator-mobile.webp',
+    desktopImage: '/age-calculator-desktop.webp',
+    repositoryURL: 'https://github.com/Mathitarazonad/svelte-age-calculator',
+    liveURL: 'https://svelte-age-calculator.vercel.app/'
+  },
+]
+
+const {project: projectId} = Astro.params
+const currentProject = projects.find(project => project.id === projectId) as Project
+
+const descParagraphs = currentProject.description.split('. ')
+---
+
+<Layout title={currentProject.name}>
+  <Header />
+  <div class='project'>
+    <section class='project-img'>
+      <img src={currentProject.desktopImage}>
+      <div class='project-urls-icons'>
+        <div class='project-icon'>
+          <a target='_blank' href={currentProject.repositoryURL}>
+            <svg width="52" height="52" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.9855 0.256837C8.0499 0.253224 0.8125 7.48701 0.8125 16.4154C0.8125 23.4758 5.33994 29.4774 11.6451 31.6815C12.4942 31.8947 12.3642 31.2913 12.3642 30.8794V28.0791C7.46094 28.6536 7.26221 25.4089 6.9334 24.8669C6.26855 23.7323 4.69678 23.4433 5.1665 22.9013C6.28301 22.3268 7.42119 23.0458 8.74004 24.9934C9.69394 26.4062 11.5548 26.1677 12.4979 25.9328C12.7038 25.0837 13.1446 24.3249 13.7517 23.7359C8.67139 22.8254 6.554 19.7252 6.554 16.0397C6.554 14.2511 7.14297 12.607 8.29922 11.281C7.56211 9.09492 8.36787 7.22324 8.47627 6.94502C10.5756 6.75713 12.758 8.44815 12.9278 8.58184C14.1202 8.26026 15.4824 8.09043 17.0072 8.09043C18.5393 8.09043 19.9051 8.26748 21.1083 8.59268C21.5166 8.28194 23.54 6.8294 25.4912 7.00645C25.596 7.28467 26.3837 9.11299 25.6899 11.2701C26.8606 12.5998 27.4568 14.2583 27.4568 16.0505C27.4568 19.7433 25.325 22.8471 20.2303 23.7432C20.6667 24.1723 21.0131 24.6841 21.2495 25.2487C21.4859 25.8132 21.6074 26.4192 21.6069 27.0313V31.0962C21.6358 31.4214 21.6069 31.743 22.1489 31.743C28.548 29.5858 33.155 23.5408 33.155 16.419C33.155 7.48701 25.914 0.256837 16.9855 0.256837Z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+        <div class='project-icon'>
+          <a target='_blank' href={currentProject.liveURL}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.65 0.800049C13.2124 0.800049 12.7927 0.96862 12.4833 1.26868C12.1738 1.56874 12 1.9757 12 2.40005C12 2.8244 12.1738 3.23136 12.4833 3.53142C12.7927 3.83148 13.2124 4.00005 13.65 4.00005H17.9169L7.53345 14.0689C7.37586 14.2164 7.25016 14.393 7.16368 14.5882C7.07721 14.7834 7.03169 14.9934 7.02979 15.2058C7.02788 15.4183 7.06963 15.6289 7.15259 15.8256C7.23556 16.0222 7.35807 16.2009 7.513 16.3511C7.66792 16.5013 7.85215 16.6201 8.05493 16.7006C8.2577 16.781 8.47498 16.8215 8.69406 16.8197C8.91315 16.8178 9.12966 16.7737 9.33097 16.6898C9.53227 16.606 9.71434 16.4841 9.86655 16.3313L20.25 6.26245V10.4001C20.25 10.8244 20.4238 11.2314 20.7333 11.5314C21.0427 11.8315 21.4624 12.0001 21.9 12.0001C22.3376 12.0001 22.7573 11.8315 23.0667 11.5314C23.3762 11.2314 23.55 10.8244 23.55 10.4001V2.40005C23.55 1.9757 23.3762 1.56874 23.0667 1.26868C22.7573 0.96862 22.3376 0.800049 21.9 0.800049H13.65Z" fill="currentColor"/>
+              <path d="M3.75001 4C2.8748 4 2.03543 4.33714 1.41656 4.93726C0.79769 5.53737 0.450012 6.35131 0.450012 7.2V20C0.450012 20.8487 0.79769 21.6626 1.41656 22.2627C2.03543 22.8629 2.8748 23.2 3.75001 23.2H16.95C17.8252 23.2 18.6646 22.8629 19.2835 22.2627C19.9023 21.6626 20.25 20.8487 20.25 20V15.2C20.25 14.7757 20.0762 14.3687 19.7667 14.0686C19.4573 13.7686 19.0376 13.6 18.6 13.6C18.1624 13.6 17.7427 13.7686 17.4333 14.0686C17.1239 14.3687 16.95 14.7757 16.95 15.2V20H3.75001V7.2H8.70001C9.13762 7.2 9.5573 7.03143 9.86674 6.73137C10.1762 6.43131 10.35 6.02435 10.35 5.6C10.35 5.17565 10.1762 4.76869 9.86674 4.46863C9.5573 4.16857 9.13762 4 8.70001 4H3.75001Z" fill="currentColor"/>
+            </svg>              
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class='project-info'>
+      <a href='/#projects' class='back-btn'>Go back</a>
+      <h1>{currentProject.name}</h1>
+      {descParagraphs.map(p => <p>{p}</p>)}
+    </section>
+    <section class='project-links'>
+      <h2>Links</h2>
+      <div>
+        <strong>Repository: </strong>
+        <a target="_blank" href={currentProject.repositoryURL}>{currentProject.repositoryURL}</a>
+      </div>
+      <div>
+        <strong>Live URL: </strong>
+        <a target="_blank" href={currentProject.liveURL}>{currentProject.liveURL}</a>
+      </div>
+    </section>
+    <section class='project-technologies'>
+      <h2>Made with</h2>
+      <p>{currentProject.technologies.join(', ')}</p>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .project {
+    margin-top: 81px;
+    background-color: var(--third-color);
+    height: 100%;
+  }
+
+  /* Project image - Start */
+  .project-img {
+    position: relative;
+    aspect-ratio: 15/9;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .project-urls-icons {
+    position: relative;
+    z-index: 12;
+    padding: var(--mobile-padding);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .project-icon {
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    width: 50px;
+    height: 50px;
+    padding: 7px;
+  }
+
+  .project-icon a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .project-icon:last-child svg {
+    margin-top: 3px;
+    margin-left: 1px;
+    height: 80%;
+  }
+
+  .project-urls-icons svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .project-img img {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+  /* Project image - End */
+
+  .back-btn {
+    text-decoration: none;
+    background-color: var(--secondary-color);
+    width: 100px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+  }
+
+  .project-info {
+    margin: var(--mobile-padding);
+    margin-bottom: 0px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 2px solid var(--main-color);
+  }
+
+  h1 {
+    color: var(--main-color);
+  }
+
+  .project-info p {
+    color: var(--card-text);
+    font-weight: 500;
+    text-align: justify;
+  }
+
+  h2 {
+    color: var(--main-color);
+  }
+
+  .project-links {
+    margin: var(--mobile-padding);
+    margin-bottom: 0px;
+    color: var(--main-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 2px solid var(--main-color);
+    padding-bottom: var(--mobile-padding);
+  }
+
+  strong {
+    font-size: 17px;
+  }
+
+  .project-links a {
+    text-underline-offset: 2px;
+    font-weight: 500;
+    color: var(--main-color);
+  }
+
+  .project-technologies {
+    padding: var(--mobile-padding);
+    width: 100%;
+  }
+
+  .project-technologies p {
+    color: var(--main-color);
+    font-weight: 400;
+  }
+</style>
