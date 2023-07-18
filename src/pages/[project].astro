@@ -67,7 +67,7 @@ const projects: Project[] = [
 const {project: projectId} = Astro.params
 const currentProject = projects.find(project => project.id === projectId) as Project
 
-const descParagraphs = currentProject.description.split('. ')
+const descParagraphs = currentProject.description.split(/(?<=\.)\s/)
 ---
 
 <Layout title={currentProject.name}>
