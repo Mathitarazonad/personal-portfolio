@@ -14,12 +14,8 @@ import Technologies from './Technologies.astro';
     <Technologies />
     <p>Technology passionate with more than <strong>1 year of experience</strong> developing web applications, specifically in the <strong>frontend</strong> with <strong>React and TypeScript.</strong> Currently developing personal projects and from third parties.</p>
     <div class='btns-container'>
-      <button class='download-btn'>
-        <a href='/MathiasTarazona-CV.pdf' download>Download CV</a>
-      </button>
-      <button class='contact-btn'>
-        Contact Me
-      </button>
+      <a href='/MathiasTarazona-CV.pdf'  class='download-btn' download>Download CV</a>
+      <a href='#contact' class='contact-btn'>Contact Me</a>
     </div>
   </div>
 </section>
@@ -81,7 +77,7 @@ import Technologies from './Technologies.astro';
     gap: 15px;
   }
 
-  button, .download-btn {
+  a {
     border: none;
     background: none;
     width: 170px;
@@ -89,16 +85,16 @@ import Technologies from './Technologies.astro';
     border-radius: 15px;
     font-size: 19px;
     font-weight: 500;
-    padding: 0 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
   }
 
   .download-btn {
     border-radius: 15px;
     background-color: var(--secondary-color);
-  }
-
-  .download-btn a {
-    color: var(--third-color);
+    color: white;
     text-decoration: none;
   }
 
