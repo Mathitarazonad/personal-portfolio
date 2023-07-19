@@ -36,6 +36,7 @@ import Technologies from './Technologies.astro';
   img {
     border: 10px solid var(--main-color);
     border-radius: 50%;
+    aspect-ratio: 1/1;
   }
 
   .text-section {
@@ -96,15 +97,57 @@ import Technologies from './Technologies.astro';
     background-color: var(--secondary-color);
     color: white;
     text-decoration: none;
+    transition: all .2s;
   }
 
   .contact-btn {
     border: 4px solid var(--main-color);
     color: var(--main-color);
     font-weight: 600;
+    transition: background .2s;
   }
 
   body.dark-theme .download-btn a {
     color: var(--main-color);
+  }
+
+  @media screen and (min-width: 1200px) {
+    section {
+      padding: var(--desktop-padding);
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      min-height: 100vh;
+    }
+
+    .photo-section {
+      align-items: center;
+    }
+
+    .photo-section img {
+      height: 425px;
+      flex: 1 1 0;
+    }
+
+    .text-section {
+      justify-content: center;
+      width: 500px;
+      gap: 15px;
+    }
+
+    .download-btn:hover {
+      background-color: rgba(164, 134, 245, 0.835)
+    }
+
+    .contact-btn:hover {
+      border: none;
+      background-color: var(--main-color);
+      color: var(--third-color);
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    section {
+      padding: 20px var(--lg-desktop-padding);
+    }
   }
 </style>
