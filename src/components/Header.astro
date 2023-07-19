@@ -74,4 +74,28 @@ const navigation = [
     color: var(--nav-link-text);
     text-decoration: none;
   }
+
+  @media screen and (min-width: 1200px) {
+    header {
+      background: none;
+    }
+    
+    .links {
+      padding: 15px var(--desktop-padding);
+      justify-content: end;
+      gap: 50px;
+    }
+
+    .link {
+      width: 80px;
+      flex: none;
+      font-size: 18.5px;
+      color: var(--main-color);
+      font-weight: 500;
+      height: 30px;
+    }
+    .link:hover {
+      border-bottom: 2px solid var(--main-color);
+    }
+  }
 </style>

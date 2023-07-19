@@ -25,4 +25,10 @@ const {icon} = Astro.props
   svg[fill='currentColor'] {
     fill: var(--nav-link-text);
   }
+
+  @media screen and (min-width: 1200px) {
+    svg {
+      display: none;
+    }
+  }
 </style>
