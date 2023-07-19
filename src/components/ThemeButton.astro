@@ -9,7 +9,7 @@
     </svg>
   </div>
   <div class='light-icon' >
-    <svg stroke="currentColor" fill="none" stroke-width="2.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+    <svg stroke="currentColor" fill="none" stroke-width="3" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -62,13 +62,17 @@
 </script>
 
 <style>
-  body.dark-theme .dark-icon, body:not(.dark-theme) .light-icon{
+  body.dark-theme .light-icon, body:not(.dark-theme) .dark-icon{
     display: none;
   }
 
   div {
     display: flex;
     align-items: center;
+  }
+
+  .dark-icon {
+    padding: 10px;
   }
 
   button {
@@ -99,6 +103,7 @@
       padding: 5px;
       justify-content: start;
       height: 40px;
+      cursor: pointer;
     }
 
     div {
@@ -110,6 +115,14 @@
       align-items: center;
       padding: 5px;
       height: 100%;
+    }
+
+    .dark-icon {
+      padding: 5px;
+    }
+
+    .light-icon svg{
+      stroke-width: 3.5px;
     }
 
     body.dark-theme button:not(.to-dark) {
@@ -134,11 +147,11 @@
       }
     }
 
-    button.to-dark .light-icon {
+    button.to-dark .dark-icon {
       animation: toDark var(--animation-delay) linear both;
     }
 
-    button.to-light .dark-icon {
+    button.to-light .light-icon {
       animation: toLight var(--animation-delay) linear both;
     }
   }
