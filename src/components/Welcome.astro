@@ -8,15 +8,17 @@ import Technologies from './Technologies.astro';
     <img src='/personal-photo.webp' alt="Mathi's Image" />
   </div>
   <div class='text-section'>
-    <h3>Welcome! I'm</h3>
-    <h1>Mathias Tarazona</h1>
-    <h2>Web Developer</h2>
+    <header>
+      <h3>Welcome! I'm</h3>
+      <h1>Mathias Tarazona</h1>
+      <h2>Web Developer</h2>
+    </header>
     <Technologies />
     <p>Technology passionate with more than <strong>1 year of experience</strong> developing web applications, specifically in the <strong>frontend</strong> with <strong>React and TypeScript.</strong> Currently developing personal projects and from third parties.</p>
-    <div class='btns-container'>
+    <footer class='btns-container'>
       <a href='/MathiasTarazona-CV.pdf'  class='download-btn' download>Download CV</a>
       <a href='#contact' class='contact-btn'>Contact Me</a>
-    </div>
+    </footer>
   </div>
 </section>
 
@@ -113,11 +115,11 @@ import Technologies from './Technologies.astro';
 
   @media screen and (min-width: 1200px) {
     section {
-      padding-top: 0px !important;
-      padding-bottom: 0px !important;
       flex-direction: row-reverse;
       justify-content: space-between;
-      min-height: 100vh;
+      margin-top: 70px;
+      min-height: calc(100vh - 70px);
+      padding: 50px var(--desktop-padding) !important;
     }
 
     .photo-section {
@@ -135,6 +137,10 @@ import Technologies from './Technologies.astro';
       gap: 15px;
     }
 
+    p {
+      margin-top: -10px;
+    }
+
     .download-btn:hover {
       background-color: rgba(164, 134, 245, 0.835)
     }
@@ -143,6 +149,12 @@ import Technologies from './Technologies.astro';
       border: none;
       background-color: var(--main-color);
       color: var(--third-color);
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    section {
+      padding: 50px var(--lg-desktop-padding) !important;
     }
   }
 </style>
