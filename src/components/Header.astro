@@ -92,5 +92,19 @@ const navigation = [
     .link:hover {
       border-bottom: 2px solid white;
     }
+
+  @media screen and (min-width: 1200px) {
+		.links {
+			padding-right: var(--desktop-padding);
+			padding-left: var(--desktop-padding);
+		}
+	}
+
+	@media screen and (min-width: 1400px) {
+		.links {
+			padding-left: var(--lg-desktop-padding);
+			padding-right: var(--lg-desktop-padding);
+		}
+	}
   }
 </style>
