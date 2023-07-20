@@ -4,7 +4,7 @@ const projects = [
     projectDetailsURL: '/employer-infojobs',
     name: 'Employer InfoJobs',
     resume: 'Application based on InfoJobs but for recruiters.',
-    technologies: ['Next', 'TypeScript', 'Next', 'Firebase'],
+    technologies: ['Next', 'TypeScript', 'Firebase', 'Tailwind'],
     mobileImage: 'recruiter-infojobs-mobile.webp',
     desktopImage: 'recruiter-infojobs-desktop.webp',
     repositoryURL: 'https://github.com/Mathitarazonad/Infojobs-hackaton',
@@ -13,7 +13,7 @@ const projects = [
   {
     projectDetailsURL: '/weather-app',
     name: 'Weather App',
-    resume: 'Live weather application made with React and Express',
+    resume: 'Live weather application made with React and Express.',
     technologies: ['React', 'Express', 'Sass', 'Redux QTK'],
     mobileImage: 'weather-app-mobile.webp',
     desktopImage: 'weather-app-desktop.webp',
@@ -23,7 +23,7 @@ const projects = [
   {
     projectDetailsURL: '/word-quiz',
     name: 'Word Quiz',
-    resume: 'Game application based on Wordle game made with Next',
+    resume: 'Game application based on Wordle game made with Next.',
     technologies: ['Next', 'Tailwind', 'Firebase'],
     mobileImage: 'word-quiz-mobile.webp',
     desktopImage: 'word-quiz-desktop.webp',
@@ -33,7 +33,7 @@ const projects = [
   {
     projectDetailsURL: '/age-calculator',
     name: 'Age Calculator',
-    resume: 'Application that calculates any age made with Svelte',
+    resume: 'Application that calculates dates made with Svelte.',
     technologies: ['Svelte', 'TypeScript', 'Tailwind'],
     mobileImage: 'age-calculator-mobile.webp',
     desktopImage: 'age-calculator-desktop.webp',
@@ -42,13 +42,48 @@ const projects = [
   },
 ]
 ---
+<script>
+  document.querySelectorAll('article').forEach(article => {
+    article.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).tagName !== 'a' && (e.target as HTMLElement).tagName !== 'svg' && (e.target as HTMLElement).tagName !== 'path') {
+        const projectDetailsURL = article.getAttribute('data-page');
+        window.location.href = projectDetailsURL!;
+      }
+    })
+  })
+</script>
+
 <section id='projects'>
   <h2>Some Projects</h2>
-<!--   <div class='desktop-projects'>
-  </div> -->
+  <div class='desktop-projects'>
+    {projects.map(project => 
+      <article style={{backgroundImage: `url(${project.desktopImage})`}} data-page={project.projectDetailsURL}>
+        <div class='project-hover'>
+          <header class='project-links'>
+            <a rel='noopener noreferrer' href={project.repositoryURL} target='_blank'>
+              <svg width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.9855 0.256837C8.0499 0.253224 0.8125 7.48701 0.8125 16.4154C0.8125 23.4758 5.33994 29.4774 11.6451 31.6815C12.4942 31.8947 12.3642 31.2913 12.3642 30.8794V28.0791C7.46094 28.6536 7.26221 25.4089 6.9334 24.8669C6.26855 23.7323 4.69678 23.4433 5.1665 22.9013C6.28301 22.3268 7.42119 23.0458 8.74004 24.9934C9.69394 26.4062 11.5548 26.1677 12.4979 25.9328C12.7038 25.0837 13.1446 24.3249 13.7517 23.7359C8.67139 22.8254 6.554 19.7252 6.554 16.0397C6.554 14.2511 7.14297 12.607 8.29922 11.281C7.56211 9.09492 8.36787 7.22324 8.47627 6.94502C10.5756 6.75713 12.758 8.44815 12.9278 8.58184C14.1202 8.26026 15.4824 8.09043 17.0072 8.09043C18.5393 8.09043 19.9051 8.26748 21.1083 8.59268C21.5166 8.28194 23.54 6.8294 25.4912 7.00645C25.596 7.28467 26.3837 9.11299 25.6899 11.2701C26.8606 12.5998 27.4568 14.2583 27.4568 16.0505C27.4568 19.7433 25.325 22.8471 20.2303 23.7432C20.6667 24.1723 21.0131 24.6841 21.2495 25.2487C21.4859 25.8132 21.6074 26.4192 21.6069 27.0313V31.0962C21.6358 31.4214 21.6069 31.743 22.1489 31.743C28.548 29.5858 33.155 23.5408 33.155 16.419C33.155 7.48701 25.914 0.256837 16.9855 0.256837Z" fill="currentColor"/>
+              </svg>
+            </a>
+            <a rel='noopener noreferrer' href={project.liveURL} target='_blank'>
+              <svg stroke="currentColor" fill="none" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </header>
+          <footer>
+            <h3>{project.name}</h3>
+            <p>{project.resume}</p>
+            <ul class='technologies'>
+              {project.technologies.map(tech => <li class='technology'>{tech}</li>)}
+            </div>
+          </footer>
+        </div>
+      </article>
+    )}
+  
+  </div>
   <div class='mobile-projects'>
     {projects.map(project => 
-    <a href={project.projectDetailsURL}>
+    <a rel='noopener noreferrer' href={project.projectDetailsURL}>
       <img src={project.mobileImage} alt={project.name + 'image'} />
     </a>)}
   </div>
@@ -74,7 +109,7 @@ const projects = [
     grid-template-columns: repeat(2, 1fr);
   }
 
-  a {
+  a:not(.link) {
     border-radius: 15px;
     overflow: hidden;
     aspect-ratio: .55;
@@ -86,6 +121,107 @@ const projects = [
 
   .desktop-projects {
     display: none;
+  }
+
+  @media screen and (min-width: 1200px) {
+    section {
+      padding: 50px var(--desktop-padding) !important;
+      gap: 30px;
+    }
+
+    .mobile-projects {
+      display: none;
+    }
+
+    .desktop-projects {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 2;
+      gap: 30px;
+    }
+
+    .desktop-projects article {
+      border-radius: 15px;
+      position: relative;
+      aspect-ratio: 16/10;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+    }
+
+    
+    .project-hover {
+      opacity: 0;
+      color: white;
+      transition: all .2s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: transparent;
+      border-radius: 15px;
+    }
+  
+    article:hover .project-hover {
+      padding: 20px;
+      opacity: 1;
+      backdrop-filter: blur(1.5px) brightness(.75);
+    }
+
+    article:nth-last-child(-n+2):hover .project-hover{
+      backdrop-filter: blur(1.5px) brightness(.3);
+    }
+
+    h3 {
+      font-weight: 600;
+    }
+
+    .project-links {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .project-links a {
+      background-color: var(--secondary-color);
+      aspect-ratio: 1/1;
+      width: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-links svg {
+      color: white;
+      border-radius: 50%;
+      padding: 6px;
+      width: 50px;
+      height: 45px;
+    }
+
+    .technologies {
+      margin-top: 5px;
+      display: flex;
+      list-style: none;
+      gap: 15px;
+    }
+
+    .technology {
+      background-color: var(--secondary-color);
+      color: white;
+      font-weight: 500;
+      padding: 3px 20px;
+      text-align: center;
+      font-size: 13px;
+      border-radius: 50px;
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    section {
+      padding: 50px var(--lg-desktop-padding) !important;
+    }
   }
 
 </style>
