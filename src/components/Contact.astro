@@ -1,9 +1,12 @@
 ---
+import ContactForm from './ContactForm.astro';
 
 ---
 <section id='contact'>
   <h2>Contact Me</h2>
+  <ContactForm />
   <div class='contacts'>
+    <h3 class='contacts-title'>Get in touch</h3>
     <address class='contact'>
       <h3>Email</h3>
       <div class='contact-info'>
@@ -45,10 +48,17 @@
     background-color: var(--fourth-color);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
     padding: var(--mobile-padding);
     position: relative;
   }
+  
+    h2 {
+      color: var(--secondary-color);
+      font-size: 1.75rem;
+      width: 100%;
+      margin-bottom: -30px;
+    }
 
   .contacts {
     display: flex;
@@ -56,9 +66,10 @@
     gap: 50px;
   }
 
-  h2 {
-    color: var(--secondary-color);
+  .contacts-title {
+    color: var(--main-color);
     font-size: 1.75rem;
+    margin-bottom: -40px;
   }
 
   .contact {
@@ -99,5 +110,40 @@
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--main-color);
+  }
+
+  @media screen and (min-width: 1200px) {
+    section {
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 50px var(--desktop-padding) !important;
+      gap: 0;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    .contacts {
+      background-color: var(--secondary-color);
+      padding: 40px;
+      flex: 1 1 0;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+
+    h3, p, svg, a {
+      color: #F9F9F9 !important;
+    }
+
+    .contact {
+      border-color: #F9F9F9;
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    section {
+      padding: 50px var(--lg-desktop-padding) !important;
+    }
   }
 </style>
