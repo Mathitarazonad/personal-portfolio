@@ -1,0 +1,180 @@
+---
+
+---
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  (() => {
+    emailjs.init('sp1bjAVXV79CAhohc');
+  })();
+
+  document.querySelector('form')?.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const form = e.target as HTMLFormElement
+    const formData = new window.FormData((form))
+    const {name: from_name, email: from_email, message} = Object.fromEntries(formData.entries())
+    const templateParams = {from_name, from_email, message}
+
+    const errorDiv = document.querySelector('.error-message') as HTMLElement
+    const successDiv = document.querySelector('.success-message') as HTMLElement
+    const errorMsg = document.querySelector('.error-message p') as HTMLElement
+    const errorDivs = {
+      empty: 'All fields are required!',
+      invalidMail: 'Email is not valid!'
+    }
+
+    if (!from_name || !from_email || !message) {
+      successDiv.classList.remove('show');
+      errorMsg.innerText = errorDivs.empty
+      errorDiv.classList.add('show')
+      return
+    }
+
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regexEmail.test(from_email as string)) {
+      errorMsg.innerText = errorDivs.invalidMail
+      errorDiv.classList.add('show')
+      return
+    }
+
+    emailjs.send('service_u74qlg8', 'template_z4zaj7o', templateParams)
+    successDiv.classList.add('show');
+    form.reset()
+  })
+</script>
+
+<script>
+  const successDiv = document.querySelector('.success-message') as HTMLElement
+  const errorDiv = document.querySelector('.error-message') as HTMLElement
+  document.querySelector('.success-close')?.addEventListener('click', () => {
+    successDiv.classList.remove('show')
+  })
+
+  document.querySelector('.error-message')?.addEventListener('click', () => {
+    errorDiv.classList.remove('show')
+  })
+
+  document.querySelectorAll('input, textarea').forEach(e => e.addEventListener('input', () => {
+    successDiv.classList.remove('show')
+    errorDiv.classList.remove('show')
+  }))
+</script>
+
+<form>
+  <h3>Send me an email</h3>
+  <div class='error-message'>
+    <p>All fields are required!</p>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+      <path d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z">
+      </path>
+    </svg>
+  </div>
+  <div class='success-message'>
+    <p>Message successfully sent!</p>
+    <svg class='success-close' stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+      <path d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z">
+      </path>
+    </svg>
+  </div>
+  <input name='name' placeholder='Your name' />
+  <input name='email' placeholder='example@gmail.com' />
+  <textarea rows='4' name='message' placeholder='Your message...' />
+  <button type='submit'>Send</button>
+</form>
+
+<style>
+  form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  input, textarea {
+    background-color: var(--card-bg);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    outline: none;
+    color: var(--card-text);
+    resize: none;
+  }
+
+  h3 {
+    font-size: 1.75rem;
+    color: var(--main-color);
+    margin-bottom: -10px;
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: var(--card-text);
+    opacity: .85;
+  }
+
+  input:focus, textarea:focus {
+    outline: 1px solid var(--card-text);
+  }
+
+  button {
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 15px;
+    width: 125px;
+    font-weight: 500;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px 20px;
+    color: white;
+    transition: background .2s;
+  }
+
+  button:hover {
+    background-color: rgba(164, 134, 245, 0.835)
+  }
+
+  .error-message {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 15px;
+    color: #FF3838;
+    font-weight: 500;
+    padding: 10px 20px;
+    background-color: #FFC5C5;
+  }
+
+  .success-message {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 15px;
+    color: #109548;
+    font-weight: 500;
+    padding: 10px 20px;
+    background-color: #b6f7b6;
+  }
+
+  .show {
+    display: flex;
+  }
+
+  svg {
+    cursor: pointer;
+  }
+
+  @media screen and (min-width: 1200px) {
+    form {
+      padding: 40px;
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px;
+      background-color: #ece7f9;
+    }
+
+    body.dark-theme form{
+      background-color: var(--third-color);
+    }
+  }
+
+</style>
