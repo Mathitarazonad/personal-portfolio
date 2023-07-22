@@ -35,7 +35,7 @@ const projects: Project[] = [
   {
     id: 'weather-app',
     name: 'Weather App',
-    description: 'This is a weather application that allows users to check real-time weather information for any location.The application fetches data from OpenWeatherMap API such as temperature, humidity, wind speed, and so on. Users can search for weather details by entering the name of any city or just with its current position using native Geolocation API.',
+    description: 'This is a weather application that allows users to check real-time weather information for any location. The application fetches data from OpenWeatherMap API such as temperature, humidity, wind speed, and so on. Users can search for weather details by entering the name of any city or just with its current position using native Geolocation API.',
     technologies: ['React', 'Express', 'Sass', 'Redux QTK'],
     mobileImage: 'weather-app-mobile.webp',
     desktopImage: 'weather-app-desktop.webp',
@@ -74,7 +74,7 @@ const descParagraphs = currentProject.description.split(/(?<=\.)\s/)
   <Header />
   <div class='project'>
     <section class='project-img'>
-      <img src={currentProject.desktopImage}>
+      <img class='desktop-img' src={currentProject.desktopImage} />
       <div class='project-urls-icons'>
         <div class='project-icon'>
           <a target='_blank' href={currentProject.repositoryURL}>
@@ -93,26 +93,32 @@ const descParagraphs = currentProject.description.split(/(?<=\.)\s/)
         </div>
       </div>
     </section>
-    <section class='project-info'>
-      <a href='/#projects' class='back-btn'>Go back</a>
-      <h1>{currentProject.name}</h1>
-      {descParagraphs.map(p => <p>{p}</p>)}
-    </section>
-    <section class='project-links'>
-      <h2>Links</h2>
-      <div>
-        <strong>Repository: </strong>
-        <a target="_blank" href={currentProject.repositoryURL}>{currentProject.repositoryURL}</a>
-      </div>
-      <div>
-        <strong>Live URL: </strong>
-        <a target="_blank" href={currentProject.liveURL}>{currentProject.liveURL}</a>
-      </div>
-    </section>
-    <section class='project-technologies'>
-      <h2>Made with</h2>
-      <p>{currentProject.technologies.join(', ')}</p>
-    </section>
+    <div class='project-content'>
+      <section class='project-info'>
+        <div class='project-info'>
+          <a href='/#projects' class='back-btn'>Go back</a>
+          <h1>{currentProject.name}</h1>
+          {descParagraphs.map(p => <p>{p}</p>)}
+        </div>
+        <div class='project-links'>
+          <h2>Links</h2>
+          <div>
+            <strong>Repository: </strong>
+            <a target="_blank" href={currentProject.repositoryURL}>{currentProject.repositoryURL}</a>
+          </div>
+          <div>
+            <strong>Live URL: </strong>
+            <a target="_blank" href={currentProject.liveURL}>{currentProject.liveURL}</a>
+          </div>
+        </div>
+        <div class='project-technologies'>
+          <h2>Made with</h2>
+          <p>{currentProject.technologies.join(', ')}</p>
+        </div>
+  
+      </section>
+      <img class='mobile-img' src={currentProject.mobileImage} />
+    </div>
   </div>
 </Layout>
 
@@ -168,9 +174,18 @@ const descParagraphs = currentProject.description.split(/(?<=\.)\s/)
     width: 100%;
     position: absolute;
   }
+
+  .mobile-img {
+    display: none;
+  }
   /* Project image - End */
 
+  .project-content {
+    padding: 15px;
+  }
+
   .back-btn {
+    transition: background .2s;
     text-decoration: none;
     background-color: var(--secondary-color);
     width: 100px;
@@ -182,13 +197,9 @@ const descParagraphs = currentProject.description.split(/(?<=\.)\s/)
   }
 
   .project-info {
-    margin: var(--mobile-padding);
-    margin-bottom: 0px;
-    padding-bottom: 15px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    border-bottom: 2px solid var(--main-color);
   }
 
   h1 {
@@ -206,8 +217,6 @@ const descParagraphs = currentProject.description.split(/(?<=\.)\s/)
   }
 
   .project-links {
-    margin: var(--mobile-padding);
-    margin-bottom: 0px;
     color: var(--main-color);
     display: flex;
     flex-direction: column;
@@ -228,12 +237,70 @@ const descParagraphs = currentProject.description.split(/(?<=\.)\s/)
   }
 
   .project-technologies {
-    padding: var(--mobile-padding);
     width: 100%;
   }
 
   .project-technologies p {
     color: var(--main-color);
     font-weight: 400;
+  }
+
+  @media screen and (min-width: 1200px) {
+    .project {
+      margin-top: 70px;
+      padding: 50px var(--desktop-padding);
+    }
+
+    .back-btn:hover {
+      background-color: rgba(164, 134, 245, 0.835)
+    }
+
+    .project-img {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+      height: auto !important;
+    }
+
+    img {
+      width: auto !important;
+      position: initial !important;
+      border-radius: 15px;
+    }
+
+    .desktop-img {
+      max-width: 100%;
+      aspect-ratio: 16/9;
+    }
+
+    .project-content {
+      margin-top: 30px;
+      padding: 0;
+      display: flex;
+      gap: 50px;
+    }
+
+    .mobile-img {
+      display: initial;
+      aspect-ratio: .55;
+      max-width: 365px;
+    }
+
+    .project-urls-icons {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 1400px){
+    .project {
+      padding: 50px var(--lg-desktop-padding);
+    }
+  }
+
+  @media screen and (min-width: 1600px) {
+    .project {
+      padding: 50px var(--xl-desktop-padding);
+    }
   }
 </style>
